@@ -5,9 +5,10 @@
 
 Follow below steps to execute the code.<br/>
 
+You need to have python 3.6 with anaconda installed on your machine. <br/>
 Install all python modules mentioned in requirements.txt by using below command.
 
-> pip install -r requirements.txt
+  > pip install -r requirements.txt
 
 Copy CK+ dataset, `data` into `data/original_data` folder and `labels` into `data/labels` folder.
 
