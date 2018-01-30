@@ -30,7 +30,7 @@ Cheers....
 - **Shayan Ahmad Siddiqui**
 - **Abhijeet Parida**
 
-**DL4CV Winter Sem Project.**
+**DL4CV Winter Sem Project, 2018.**
 <br/>
 **Technical University of Munich, Germany.**
 
