@@ -15,7 +15,7 @@ class ExpNet_p2(nn.Module):
         self.gpuDevice = gpuDevice
         
         self.expnet_p1 = me.ExpNet(useCuda, gpuDevice)
-        self.expnet_p1.load_state_dict(torch.load('model/expnet_phase1_96_final_98p.pt',\
+        self.expnet_p1.load_state_dict(torch.load('model/expnet_p1.pt',\
                                                   map_location=lambda storage, loc: storage))
 
         self.phase1 = self.expnet_p1.eval()
