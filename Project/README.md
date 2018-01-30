@@ -1,6 +1,6 @@
 
 
-**_FACIAL EXPRESSION PREDICTION_**           
+## FACIAL EXPRESSION PREDICTION       
 
 
 Follow below steps to execute the code.
@@ -26,11 +26,11 @@ If you do not have a GPU supported system, you can try running **_`Prediction_CP
 
 Cheers....
 
-- **Jyotirmay Senapati**(@github/jyotirmay123)
+- **Jyotirmay Senapati**
 - **Shayan Ahmad Siddiqui**
 - **Abhijeet Parida**
 
 **DL4CV Winter Sem Project.**
-
+<br/>
 **Technical University of Munich, Germany.**
 
