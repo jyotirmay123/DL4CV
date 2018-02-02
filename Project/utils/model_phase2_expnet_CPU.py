@@ -24,17 +24,12 @@ class ExpNet_p2(nn.Module):
         self.pool2 = nn.AvgPool2d((3,3), stride=(2,2), padding=(1,1))
         self.fc1 = nn.Linear(736, 256)
         self.fc2 = nn.Linear(256, 8)
-                
-        #if useCuda:
-        #    self.cuda(gpuDevice)
 
 
 
     def forward(self, x):
         
         x = self.phase1(x)
-        #x = self.pool1(x)
-        #x = self.pool2(x)
         x = x.view((x.size(0), -1))
         x = self.fc1(x)
         output = self.fc2(x)
@@ -48,11 +43,6 @@ class ExpNet_p2(nn.Module):
         if len(size) != 4:
             data = data.view(size[0], size[2], size[3], size[4])
         return data
-        
-    #@property
-    #def is_cuda(self):
-    #   
-    #    return next(self.parameters()).is_cuda
 
     def save(self, path):
         
