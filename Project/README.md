@@ -23,6 +23,8 @@ It generally takes max upto 1 hour to complete under normal configuration that h
 Once you are good with the model. Upload some images into `data/predict_images` folder.<br/>
 Execute **_`Prediction.ipynb`_** with your trained model to predict the expression of recently uploaded real time expressive pics of yours.
 
+You can skip training a new model and run prediction with our pre-trained model stored in `model` folder.<br/>
+
 If you do not have a GPU supported system, you can try executing **_`Prediction_CPU.ipynb`_** file on CPU machine.
 
 Cheers....
