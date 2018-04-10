@@ -29,11 +29,12 @@ If you do not have a GPU supported system, you can try executing **_`Prediction_
 
 Cheers....
 
-- **Jyotirmay Senapati**
-- **Shayan Ahmad Siddiqui**
-- **Abhijeet Parida**
+- [Shayan Siddiqui](https://www.linkedin.com/in/shayan-siddiqui/)
+- [Jyotirmay Senapati](https://www.linkedin.com/in/jyotirmay-senapati-30615421/)
+- [Abhijeet Parida](https://www.linkedin.com/in/a-parida/)
 
 **DL4CV Winter Sem Project, 2018.**
 <br/>
 **Technical University of Munich, Germany.**
+
 
