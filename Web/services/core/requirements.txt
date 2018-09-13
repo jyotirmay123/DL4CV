@@ -1,0 +1,17 @@
+dlib>=19.4
+numpy>=1.13
+opencv-python>=3.2
+matplotlib
+torch
+time
+sklearn
+itertools
+argparse
+collections
+sys
+pathlib
+cv2
+os
+shutil
+random
+glob
