@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction</title>
+
+    <!--<script type="text/javascript" src="../static/library/js/plotly.min.js"></script>-->
+
+    <script type="text/javascript" src="../static/library/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/library/js/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/library/css/app.css"/>
+</head>
+<body background="../static/images/background.jpg">
+
+<div class="content">
+    <!--<div>-->
+        <!--<fieldset>-->
+            <!--<legend>Upload Your Beautiful Pic:</legend>-->
+            <span>Real time emotion detection on video: </span>
+
+            <div id="container">
+                <img id="bg" src="{{ url_for('video_feed') }}" />
+            </div>
+            <button id="stop" class="btn">Stop</button>
+            <br/>
+</div>
+</body>
+</html>

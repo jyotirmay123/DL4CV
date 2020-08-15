@@ -1,0 +1,82 @@
+
+body {
+    font-weight: bolder;
+    color: darkslateblue;
+}
+
+.emotions_list li {
+    list-style: none !important;
+    margin: 10px 10px 10px 10px;
+
+}
+
+.uploaded_file_list li {
+    list-style: none !important;
+    margin: 10px 10px 10px 10px;
+}
+
+ul {
+    display: flex;
+}
+
+.content {
+    padding: 50px 50px 50px 50px;
+    max-width: 500px;
+    margin: auto;
+}
+
+.submit_btn {
+    float: right;
+}
+
+#container {
+    margin: 0px auto;
+    width: 500px;
+    height: 375px;
+    border: 10px #333 solid;
+}
+
+#videoElement {
+    width: 500px;
+    height: 375px;
+    background-color: #666;
+}
+
+#bg {
+    height: 100%;
+    width: 100%;
+}
+
+.clr_btn {
+    float: right;
+    position: relative;
+    right: 0;
+    bottom: 0;
+}
+
+.btn {
+    margin-top: 15px;
+    margin-left: 45%;
+    background-color: #0066FF;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+fieldset {
+    margin: 20px 20px 20px 20px;
+}
+
+.emotion {
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    font-family: monospace;
+    display: inline-block;
+    font-size: 16px;
+}
