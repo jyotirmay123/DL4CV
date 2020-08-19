@@ -3,13 +3,13 @@ import torch
 from torch.autograd import Variable
 import cv2
 import dlib
-import services.core.utils.img_allign_expnet as iae
-import services.core.utils.model_phase2_expnet_CPU as mpe
+from .utils.img_allign_expnet import img_align_modified
+from .utils.model_phase2_expnet_CPU import ExpNet_p2
 import os
 import datetime
 import os
 
-os.environ['KMP_DUPLICATE_LIB_OK']='True'
+os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 
 
 class VideoCamera(object):
@@ -52,7 +52,7 @@ class VideoCamera(object):
             self.feelings_faces.append(self.cv2.imread('./static/images/emojis/' + emotion + '.png', -1))
 
     def __del__(self):
-        self.is_camera_open = True
+        self.is_camera_open = False
         self.video.release()
         # self.video_writer.release()
         self.cv2.destroyAllWindows()
@@ -64,7 +64,7 @@ class VideoCamera(object):
         self.cv2.destroyAllWindows()
 
     def load_model(self):
-        model_p2 = mpe.ExpNet_p2(useCuda=False, gpuDevice=0)
+        model_p2 = ExpNet_p2(useCuda=False, gpuDevice=0)
         model_p2.load_state_dict(torch.load(os.path.join('./services/core/model', 'expnet_p2.pt'),
                                             map_location=lambda storage, loc: storage))
 
@@ -146,7 +146,7 @@ class VideoCamera(object):
 
     def format_image(self, image):
         try:
-            image = iae.img_align_modified(image, self.dlib_detector, self.dlib_predictor)
+            image = img_align_modified(image, self.dlib_detector, self.dlib_predictor)
             original_img = image
 
             image = self.cv2.cvtColor(image, self.cv2.COLOR_RGB2BGR)

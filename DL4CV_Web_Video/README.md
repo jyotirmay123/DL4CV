@@ -28,3 +28,7 @@ Cheers....
 **Technical University of Munich, Germany.**
 
 
+
+https://stackoverflow.com/questions/58457069/face-emotion-analysis-with-webrtc-and-python-server
+
+

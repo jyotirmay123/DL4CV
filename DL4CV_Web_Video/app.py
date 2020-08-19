@@ -1,7 +1,7 @@
 # from __future__ import absolute_import
-from services.core.Prediction_CPU import Execute
-from services.file_upload_service import File_Upload_Service
-from services.core.camera import VideoCamera
+from .services.core.Prediction_CPU import Execute
+from .services.file_upload_service import File_Upload_Service
+from .services.core.camera import VideoCamera
 from flask import Flask, send_file, render_template, redirect, flash, request, url_for, jsonify, abort, Response
 from json import dumps
 
