@@ -1,7 +1,0 @@
-Flask==0.12.2
-gunicorn==20.0.4
-Werkzeug==0.16
-numpy<1.19.0
-opencv-python~=4.4.0.40
-https://download.pytorch.org/whl/cpu/torch-1.0.0-cp36-none-macosx_10_7_x86_64.whl
-dlib~=19.21.0
