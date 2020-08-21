@@ -40,11 +40,11 @@ def image():
         # frame = imutils.resize(image_object, width=700)
         # print(frame.shape)
 
-        bytes_res = vc.get_frame(frame)
-
+        out = vc.get_frame(frame)
         # bytes_res = cv2.imencode('.jpg', frame)[1]
 
-        return jsonify({'feed': f"data:image/jpeg;base64,{bytes_to_base64(bytes_res)}"})
+        return jsonify(out)
+        # return jsonify({'feed': f"data:image/jpeg;base64,{bytes_to_base64(bytes_res)}"})
     except Exception as e:
         print('POST /image error: %e' % e)
         return e

@@ -10,7 +10,7 @@
     /*margin-top:15px;*/
 }
 
-img {
+img, .remote-video {
     margin:10px;
     position: relative;
     border: 1px solid #cddfe7;
@@ -21,6 +21,13 @@ img {
     text-align: center;
     /*right: 0px;*/
     /*margin-top:15px;*/
+}
+
+canvas {
+    top: 14em;
+    right: 14em;
+    position: absolute;
+    height: 18em;
 }
 
 button {

@@ -79,59 +79,89 @@ class VideoCamera(object):
 
     def get_frame(self, image):
         success, image = True, image  # self.video.read()
-
+        image_height, image_width, channel = image.shape
+        out = dict(
+            max_index=None,
+            face=None
+        )
         if success:
             model_image, cropped_image = self.format_image(image)
             if model_image is not None:
                 result, max_val, max_index = self.predict(model_image)
+                out['max_index'] = int(max_index)
 
-                if result is not None:
-                    # write the different emotions and have a bar to indicate probabilities for each class
-                    for index, emotion in enumerate(self.emo_list):
-                        self.cv2.putText(image, emotion, (10, index * 20 + 20), self.font, 0.5, (0, 0, 255), 2)
-                        self.cv2.rectangle(image, (130, index * 20 + 10),
-                                           (130 + int(result[index] * 100), (index + 1) * 20 + 4),
-                                           (255, 0, 0), -1)
+                gray = self.cv2.cvtColor(image, self.cv2.COLOR_BGR2GRAY)
 
-                    self.cv2.putText(image, self.emo_list[max_index], (10, 360), self.font, 2, (255, 255, 255), 2,
-                                     self.cv2.LINE_AA)
+                faces = self.faceCascade.detectMultiScale(
+                    gray,
+                    scaleFactor=1.3,
+                    minNeighbors=5,
+                    minSize=(30, 30),
+                    flags=self.cv2.CASCADE_SCALE_IMAGE
+                )
 
-                    face_image = self.feelings_faces[max_index]
+                if len(faces) > 0:
+                    # initialize the first face as having maximum area.
+                    max_area_face = faces[0]
+                    for face in faces:  # (x,y,w,h)
+                        if face[2] * face[3] > max_area_face[2] * max_area_face[3]:
+                            max_area_face = face
+                    x, y, h, w = max_area_face.astype(np.int).tolist()
+                    x = x / image_width
+                    w = w / image_width
+                    y = y / image_height
+                    h = h / image_height
+                    out['face'] = [x, y, w, h]
 
-                    for c in range(0, 3):
-                        image[200:320, 10:130, c] = face_image[:, :, c] * (face_image[:, :, 3] / 255.0) + image[200:320,
-                                                                                                          10:130,
-                                                                                                          c] * (
-                                                            1.0 - face_image[:, :, 3] / 255.0)
+                    # (x, y, w, h) = max_area_face
+                    # image = self.cv2.rectangle(image, (x, y - 50), (x + w, y + h + 10), (255, 255, 255), 2)
+                # if result is not None:
+                #     # write the different emotions and have a bar to indicate probabilities for each class
+                #     for index, emotion in enumerate(self.emo_list):
+                #         self.cv2.putText(image, emotion, (10, index * 20 + 20), self.font, 0.5, (0, 0, 255), 2)
+                #         self.cv2.rectangle(image, (130, index * 20 + 10),
+                #                            (130 + int(result[index] * 100), (index + 1) * 20 + 4),
+                #                            (255, 0, 0), -1)
+                #
+                #     self.cv2.putText(image, self.emo_list[max_index], (10, 360), self.font, 2, (255, 255, 255), 2,
+                #                      self.cv2.LINE_AA)
+                #
+                #     face_image = self.feelings_faces[max_index]
+                #
+                #     for c in range(0, 3):
+                #         image[200:320, 10:130, c] = face_image[:, :, c] * (face_image[:, :, 3] / 255.0) + image[200:320,
+                #                                                                                           10:130,
+                #                                                                                           c] * (
+                #                                             1.0 - face_image[:, :, 3] / 255.0)
 
-                    gray = self.cv2.cvtColor(image, self.cv2.COLOR_BGR2GRAY)
-
-                    faces = self.faceCascade.detectMultiScale(
-                        gray,
-                        scaleFactor=1.3,
-                        minNeighbors=5,
-                        minSize=(30, 30),
-                        flags=self.cv2.CASCADE_SCALE_IMAGE
-                    )
-
-                    if len(faces) > 0:
-                        # initialize the first face as having maximum area.
-                        max_area_face = faces[0]
-                        for face in faces:  # (x,y,w,h)
-                            if face[2] * face[3] > max_area_face[2] * max_area_face[3]:
-                                max_area_face = face
-
-                        (x, y, w, h) = max_area_face
-                        image = self.cv2.rectangle(image, (x, y - 50), (x + w, y + h + 10), (255, 255, 255), 2)
+                    # gray = self.cv2.cvtColor(image, self.cv2.COLOR_BGR2GRAY)
+                    #
+                    # faces = self.faceCascade.detectMultiScale(
+                    #     gray,
+                    #     scaleFactor=1.3,
+                    #     minNeighbors=5,
+                    #     minSize=(30, 30),
+                    #     flags=self.cv2.CASCADE_SCALE_IMAGE
+                    # )
+                    #
+                    # if len(faces) > 0:
+                    #     # initialize the first face as having maximum area.
+                    #     max_area_face = faces[0]
+                    #     for face in faces:  # (x,y,w,h)
+                    #         if face[2] * face[3] > max_area_face[2] * max_area_face[3]:
+                    #             max_area_face = face
+                    #
+                    #     (x, y, w, h) = max_area_face
+                    #     image = self.cv2.rectangle(image, (x, y - 50), (x + w, y + h + 10), (255, 255, 255), 2)
                         # self.cv2.imwrite(self.out_file.format(self.file_), image)
                         # self.file_ += 1
                         # self.video_writer.write(image)
-                    else:
-                        print("No face!!!")
-                        self.stop_camera = False
-                else:
-                    print("No Emotion Prediction!!!.")
-                    self.stop_camera = False
+                    # else:
+                    #     print("No face!!!")
+                    #     self.stop_camera = False
+                # else:
+                #     print("No Emotion Prediction!!!.")
+                #     self.stop_camera = False
             else:
                 print("Some issue in image format!!!")
                 self.stop_camera = False
@@ -139,12 +169,13 @@ class VideoCamera(object):
             print("No frame captured from Video!!!")
             self.stop_camera = False
 
-        try:
-            return self.cv2.imencode('.jpg', image)[1]  # .tobytes()
-        except Exception as e:
-            print("Exception while returning image as byte!!!---> {}".format(e))
-            self.stop_camera = False
-            return bytearray()
+        # try:
+        #     return self.cv2.imencode('.jpg', image)[1]  # .tobytes()
+        # except Exception as e:
+        #     print("Exception while returning image as byte!!!---> {}".format(e))
+        #     self.stop_camera = False
+        #     return bytearray()
+        return out
 
     def format_image(self, image):
         try:
