@@ -30,8 +30,8 @@ If you do not have a GPU supported system, you can try executing **_`Prediction_
 
 Cheers....
 
-- [Shayan Siddiqui](https://www.linkedin.com/in/shayan-siddiqui/)
 - [Jyotirmay Senapati](https://www.linkedin.com/in/jyotirmay-senapati-30615421/)
+- [Shayan Siddiqui](https://www.linkedin.com/in/shayan-siddiqui/)
 - [Abhijeet Parida](https://www.linkedin.com/in/a-parida/)
 
 **DL4CV Winter Sem Project, 2018.**
